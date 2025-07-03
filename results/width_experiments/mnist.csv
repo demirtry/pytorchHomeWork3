@@ -1,5 +1,5 @@
 Эксперимент;Train Acc;Test Acc
-narrow_mnist;95.11;95.67
-medium_mnist;96.83;96.84
-wide_mnist;97.14;97.07
-very_wide_mnist;96.99;97.19
+narrow_mnist;98.63;96.92
+medium_mnist;99.29;97.85
+wide_mnist;99.26;97.93
+very_wide_mnist;99.15;98.22

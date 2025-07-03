@@ -1,5 +1,5 @@
 Эксперимент;Train Acc;Test Acc
-narrow_cifar;46.72;47.36
-medium_cifar;48.3;49.6
-wide_cifar;47.92;46.92
-very_wide_cifar;46.97;47.61
+narrow_cifar;57.61;49.91
+medium_cifar;66.27;53.08
+wide_cifar;67.39;54.12
+very_wide_cifar;66.8;52.78
