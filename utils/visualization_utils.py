@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import torch
 
 
 def plot_training_history(history, plot_name: str):
@@ -36,6 +37,7 @@ def results_dict_to_table(results_dict: dict, save_path: str):
     os.makedirs('results', exist_ok=True)
     os.makedirs('results/depth_experiments', exist_ok=True)
     os.makedirs('results/width_experiments', exist_ok=True)
+    os.makedirs('results/regularization_experiments', exist_ok=True)
 
     data = []
     for name, (train_acc, test_acc) in results_dict.items():
@@ -76,3 +78,21 @@ def heatmap_from_data(grid_records: list[dict], dataset: str):
     os.makedirs("results/grid_search", exist_ok=True)
     save_csv = f"results/grid_search/width_grid_{dataset}.csv"
     df_grid.to_csv(save_csv, index=False)
+
+
+def plot_weight_distribution(model, save_path: str):
+    weights = []
+    for param in model.parameters():
+        if param.dim() > 1:
+            weights.append(param.detach().cpu().flatten())
+
+    all_weights = torch.cat(weights).numpy()
+    plt.figure(figsize=(6, 4))
+    plt.hist(all_weights, bins=50, color='skyblue', edgecolor='black')
+    plt.title("Weight Distribution")
+    plt.xlabel("Weight Value")
+    plt.ylabel("Frequency")
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.close()
+
