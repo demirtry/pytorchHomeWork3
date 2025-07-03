@@ -65,3 +65,22 @@ def get_cifar_loaders(batch_size=64):
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     return train_loader, test_loader
+
+
+def load_data(dataset: str, batch_size: int = 64):
+    """
+    Загрузка датасета и определение input_size
+    :param dataset: 'mnist' или 'cifar'
+    :param batch_size: размер батча
+    :return: возвращает train_loader, test_loader, input_size
+    """
+    if dataset == "mnist":
+        train_loader, test_loader = get_mnist_loaders(batch_size=batch_size)
+        input_size = 784
+    elif dataset == "cifar":
+        train_loader, test_loader = get_cifar_loaders(batch_size=batch_size)
+        input_size = 3072
+    else:
+        raise ValueError(f"Unsupported dataset: {dataset}")
+
+    return train_loader, test_loader, input_size
