@@ -1,6 +1,6 @@
 import torch
 import logging
-from utils.experiment_utils import get_mnist_loaders, get_cifar_loaders
+from utils.experiment_utils import load_data
 from utils.model_utils import FullyConnectedModel, train_model, count_parameters
 from utils.visualization_utils import plot_training_history, results_dict_to_table, heatmap_from_data
 
@@ -35,24 +35,6 @@ def build_layers(hidden_sizes: list[int]):
     ]
     return layers
 
-
-def load_data(dataset: str, batch_size: int = 64):
-    """
-    Загрузка датасета и определение input_size
-    :param dataset: 'mnist' или 'cifar'
-    :param batch_size: размер батча
-    :return: возвращает train_loader, test_loader, input_size
-    """
-    if dataset == "mnist":
-        train_loader, test_loader = get_mnist_loaders(batch_size=batch_size)
-        input_size = 784
-    elif dataset == "cifar":
-        train_loader, test_loader = get_cifar_loaders(batch_size=batch_size)
-        input_size = 3072
-    else:
-        raise ValueError(f"Unsupported dataset: {dataset}")
-
-    return train_loader, test_loader, input_size
 
 def run_width_experiments(dataset: str, batch_size: int = 64, epochs: int = 10):
     """
@@ -151,5 +133,5 @@ if __name__ == '__main__':
     for ds in ['mnist', 'cifar']:
         run_width_experiments(ds)
 
-    # for ds in ['mnist', 'cifar']:
-    #     run_width_grid_search(ds)
+    for ds in ['mnist', 'cifar']:
+        run_width_grid_search(ds)
