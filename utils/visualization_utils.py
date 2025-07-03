@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def plot_training_history(history, plot_name: str):
@@ -46,3 +47,32 @@ def results_dict_to_table(results_dict: dict, save_path: str):
 
     df = pd.DataFrame(data)
     df.to_csv(save_path, sep=";", index=False)
+
+
+def heatmap_from_data(grid_records: list[dict], dataset: str):
+    df_grid = pd.DataFrame(grid_records)
+
+    # Добавляем тип схемы для группировки по Y
+    df_grid['scheme_type'] = df_grid['scheme'].apply(lambda s: s.split('_')[0])
+
+    # Создаём сводную таблицу для тепловой карты
+    heatmap_data = df_grid.pivot(index='scheme_type', columns='base_width', values='test_acc')
+
+    # Рисуем тепловую карту
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(heatmap_data, annot=True, fmt='.3f', cmap='magma', linewidths=0.5)
+    plt.title(f"Grid Search Test Acc Heatmap ({dataset})")
+    plt.xlabel('Base Width')
+    plt.ylabel('Scheme')
+    plt.tight_layout()
+
+    # Сохраняем изображение
+    os.makedirs("plots", exist_ok=True)
+    heatmap_path = f"plots/grid_search/heatmap_{dataset}.png"
+    plt.savefig(heatmap_path)
+    plt.close()
+
+    # Сохраняем CSV
+    os.makedirs("results/grid_search", exist_ok=True)
+    save_csv = f"results/grid_search/width_grid_{dataset}.csv"
+    df_grid.to_csv(save_csv, index=False)
