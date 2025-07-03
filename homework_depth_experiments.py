@@ -1,6 +1,6 @@
 import torch
 import logging
-from utils.experiment_utils import get_mnist_loaders, get_cifar_loaders
+from utils.experiment_utils import load_data
 from utils.model_utils import FullyConnectedModel, train_model, count_parameters
 from utils.visualization_utils import plot_training_history, results_dict_to_table
 
@@ -42,14 +42,7 @@ def run_depth_experiments(dataset: str, batch_size: int = 64, epochs: int = 10):
     :param batch_size: размер батча
     :param epochs: число эпох
     """
-    if dataset == "mnist":
-        train_loader, test_loader = get_mnist_loaders(batch_size=batch_size)
-        input_size = 784
-    elif dataset == "cifar":
-        train_loader, test_loader = get_cifar_loaders(batch_size=batch_size)
-        input_size = 3072
-    else:
-        raise ValueError(f"Unsupported dataset: {dataset}")
+    train_loader, test_loader, input_size = load_data(dataset, batch_size=batch_size)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     scores = {}
