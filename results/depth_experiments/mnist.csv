@@ -1,0 +1,11 @@
+Эксперимент;Train Acc;Test Acc
+1_layer_mnist_base;92.63;92.35
+2_layers_mnist_base;99.35;98.05
+3_layers_mnist_base;99.35;98.06
+5_layers_mnist_base;99.29;97.94
+7_layers_mnist_base;99.24;97.69
+1_layer_mnist_with_bn_do;92.63;92.32
+2_layers_mnist_with_bn_do;97.32;97.78
+3_layers_mnist_with_bn_do;98.09;98.21
+5_layers_mnist_with_bn_do;98.06;98.33
+7_layers_mnist_with_bn_do;97.19;98.21

@@ -1,0 +1,11 @@
+Эксперимент;Train Acc;Test Acc
+1_layer_cifar_base;37.95;31.92
+2_layers_cifar_base;60.88;49.82
+3_layers_cifar_base;65.88;52.5
+5_layers_cifar_base;67.81;53.74
+7_layers_cifar_base;68.3;55.07
+1_layer_cifar_with_bn_do;38.01;34.85
+2_layers_cifar_with_bn_do;51.78;52.19
+3_layers_cifar_with_bn_do;55.28;55.76
+5_layers_cifar_with_bn_do;56.09;55.98
+7_layers_cifar_with_bn_do;51.51;53.41
