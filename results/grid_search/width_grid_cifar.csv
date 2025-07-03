@@ -1,0 +1,13 @@
+scheme,base_width,train_acc,test_acc,params,scheme_type
+constant_64,64,0.5431,0.5061,205642,constant
+expanding_16_32_64,64,0.4717,0.4526,52474,expanding
+narrowing_64_32_16,64,0.53036,0.4997,199450,narrowing
+constant_128,128,0.56448,0.5223,427658,constant
+expanding_32_64_128,128,0.51706,0.4872,110058,expanding
+narrowing_128_64_32,128,0.55936,0.5174,404010,narrowing
+constant_256,256,0.57626,0.5239,920842,constant
+expanding_64_128_256,256,0.55224,0.5052,240586,expanding
+narrowing_256_128_64,256,0.56708,0.5133,828490,narrowing
+constant_512,512,0.56886,0.5119,2103818,constant
+expanding_128_256_512,512,0.57026,0.5032,563082,expanding
+narrowing_512_256_128,512,0.57456,0.5258,1738890,narrowing
